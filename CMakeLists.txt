@@ -12,6 +12,9 @@ set(FLANN_VERSION 1.9.1)
 DISSECT_VERSION()
 GET_OS_INFO()
 
+include(${CMAKE_BINARY_DIR}/../conanbuildinfo.cmake)
+conan_basic_setup(KEEP_RPATHS)
+
 
 # detect if using the Clang compiler
 if("${CMAKE_C_COMPILER_ID}" MATCHES "Clang")
@@ -146,8 +149,6 @@ if (BUILD_CUDA_LIB)
     endif(CUDA_FOUND)
 endif(BUILD_CUDA_LIB)
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(LZ4 REQUIRED liblz4)
 
 #set the C/C++ include path to the "include" directory
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/src/cpp)
